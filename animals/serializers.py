@@ -23,8 +23,9 @@ class AnimalSerializer(serializers.Serializer):
     age_to_human_years= serializers.SerializerMethodField(read_only=True)
 
     def get_age_to_human_years(self, obj:Animal)->float:
-        human_age= 16*math.log(obj.age)+31
-        return round(human_age,1)
+        
+        
+        return obj.convert_age_in_human_years()
 
     def create(self,validated_data):
         group_Unique= validated_data.pop("group")
